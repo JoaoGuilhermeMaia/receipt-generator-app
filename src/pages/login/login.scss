@@ -1,5 +1,4 @@
 .page-login-main {
-	
 	.login-content {
 		display: flex;
 		flex-direction: column;
@@ -40,13 +39,17 @@
 			justify-content: center;
 			flex-direction: column;
 			gap: 30px;
-			.login-button {
-				background-color: #4158d0;
-				border-radius: 15px;
-				color: #fff;
-			}
-			.login-button:hover {
-				background-color: #4b5586;
+			a {
+				display: flex;
+				justify-content: center;
+				.login-button {
+					background-color: #4158d0;
+					border-radius: 15px;
+					color: #fff;
+				}
+				.login-button:hover {
+					background-color: #4b5586;
+				}
 			}
 			.create-account-button {
 				display: flex;

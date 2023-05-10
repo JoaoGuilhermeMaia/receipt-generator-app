@@ -50,23 +50,25 @@ export default function Login() {
 							</Col>
 						</Row>
 						<Row className='row-login-button'>
-							<Button className='login-button' type='text' >
-								Entrar
-							</Button>
+							<Link to={"/home"}>
+								<Button className='login-button' type='text' >
+									Entrar
+								</Button>
+							</Link>
 							<div>
 								<div className='create-account-button'>
 									Novo aqui?
 								</div>
 								<div className='create-account-button'>
 									<Link to={"/create-account"}>
-											Criar Conta
-										</Link>
+										Criar Conta
+									</Link>
 								</div>
 							</div>
 						</Row>
 					</div>
 				</Form>
-			</div>
-		</div>
+			</div >
+		</div >
 	)
 }
