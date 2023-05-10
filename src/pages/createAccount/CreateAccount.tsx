@@ -2,8 +2,8 @@
 
 export default function CreateAccount() {
 	return (
-		<>
-			RECEBA
-		</>
+		<div className="page-background page-create-account-main"> 
+			
+		</div>
 	)
 }

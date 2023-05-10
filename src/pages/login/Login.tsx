@@ -11,7 +11,7 @@ export default function Login() {
 	}
 
 	return (
-		<div className='page-login-main'>
+		<div className='page-background page-login-main'>
 			<div className='login-content'>
 				<div className='header-content'>
 					<h3>Login</h3>
@@ -45,7 +45,7 @@ export default function Login() {
 						<Row>
 							<Col>
 								<Button type='text' size='small'>
-									Esqueceu a senha ?
+									Esqueceu a senha?
 								</Button>
 							</Col>
 						</Row>
@@ -53,11 +53,15 @@ export default function Login() {
 							<Button className='login-button' type='text' >
 								Entrar
 							</Button>
-							<div className='create-account-button'>
-								Novo aqui ?
-								<Link to={"/create-account"}>
-									Criar Conta
-								</Link>
+							<div>
+								<div className='create-account-button'>
+									Novo aqui?
+								</div>
+								<div className='create-account-button'>
+									<Link to={"/create-account"}>
+											Criar Conta
+										</Link>
+								</div>
 							</div>
 						</Row>
 					</div>
