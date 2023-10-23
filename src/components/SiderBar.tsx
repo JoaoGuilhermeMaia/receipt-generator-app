@@ -15,7 +15,7 @@ export default function Sidebar({ children }: Props) {
 	return (
 		<Layout className='content-page'>
 			{
-				(!pathname.includes("/login") || !pathname.includes("/")) &&
+				(!pathname.includes("/login") && (pathname !== "/") && !pathname.includes("/create-account")) &&
 				<Sider className='sider-content' width={"15%"}>
 					<Menu
 						mode="inline"
@@ -27,26 +27,21 @@ export default function Sidebar({ children }: Props) {
 								<Icon icon="ph:user-circle" />
 							</Col>
 							<Col className='name-user'>
-								Pedro Silva
+								{localStorage.getItem("userName")}
 							</Col>
 						</Row>
 						<Menu.Item>
-							<NavLink to='/login'>
-								Meus Dados
+							<NavLink to={localStorage.getItem("userType")?.includes("company") ? "" : "/create-company"}>
+								{localStorage.getItem("userType")?.includes("company") ? "Autonumos" : "Empresas"}
 							</NavLink>
 						</Menu.Item>
 						<Menu.Item>
-							<NavLink to='/'>
-								Autonomos
-							</NavLink>
-						</Menu.Item>
-						<Menu.Item>
-							<NavLink to='/create-account'>
+							<NavLink to={localStorage.getItem("userType")?.includes("company") ? "" : "/create-receipt"} >
 								Gerar Recibo
 							</NavLink>
 						</Menu.Item>
 					</Menu>
-					<NavLink to='/login'>
+					<NavLink onClick={() => localStorage.setItem("userId", "0")} to='/login'>
 						<Button className='logout-button' icon={<Icon icon="material-symbols:logout" />}>
 							Sair
 						</Button>
@@ -56,6 +51,6 @@ export default function Sidebar({ children }: Props) {
 			<Layout>
 				{children}
 			</Layout>
-		</Layout>
+		</Layout >
 	);
 };
