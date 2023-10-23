@@ -52,6 +52,31 @@ export default function CreateReceipt() {
 			})
 	}
 
+	const downloadPDF = async (e?: any) => {
+		await fetch('/api/gerarcupom', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+			//   'Receba',
+			//   "123",
+			//   "123",
+			//   "123",
+			//   "123",
+			//   "123",
+			//   "123",
+			//   "123",
+			//   "123",
+			}),
+		  })
+		  .then((res) => res.json())
+		  .then((data) => {
+			alert(data.link);
+			// window.location = data.link;
+		  });
+	}
+
 	return (
 		<div className="page-background page-create-account-main page-create-receipt-main">
 			<div className="page-create-content">

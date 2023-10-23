@@ -1,15 +1,43 @@
 import { Button, Card, Col, Row, notification } from "antd";
-import { ICardsProps } from "../IHome";
+import { ICardsProps, ReceiptCalculation } from "../IHome";
 import moment from "moment";
 import { Icon } from "@iconify/react";
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import request from "../../../connect/connect";
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+import autoTable from "jspdf-autotable";
 
 export default function Cards({ data }: ICardsProps) {
 	function onClickGenerated(id: number) {
-		request.get(`/receipt/calc/${localStorage.getItem("userId")}`)
-			.then(({ data }) => {
-				console.log(data);
+		request.get(`/receipt/doCalc/${id}`)
+			.then((response) => {
+				const result = response.data as ReceiptCalculation;
+				console.log(result);
+
+				const doc = new jsPDF();
+
+				// It can parse html:
+				// <table id="my-table"><!-- ... --></table>
+				autoTable(doc, { html: '#table-receipt' })
+
+				// Or use javascript directly:
+				autoTable(doc, {
+					head: [['Num. do recibo', 'Valor', 'Desconto total', 'Data inicial', 'Data final', 'PIS', 'CNPJ', 'Valor Final']],
+					body: [
+						[
+							result.id,
+							result.value,
+							result.discounts,
+							moment(result.initialDate).format("DD/MM/YYYY"),
+							moment(result.finalDate).format("DD/MM/YYYY"),
+							result.autonomousReceipt.pis.toString(),
+							result.companyReceipt.cnpj.toString(),
+							`${result.value} - ${result.discounts} = ${result.value - result.discounts}`
+						],
+					],
+				})
+				doc.save(`Recibo-${result.id}.pdf`)
 			})
 			.catch((response) => {
 				notification.error({

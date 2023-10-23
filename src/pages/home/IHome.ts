@@ -37,3 +37,33 @@ export interface CompanyReceipt {
 	cnpj: Number;
 	receipts: ReceiptData[];
 }
+export interface ReceiptCalculation {
+	initialDate: Date;
+	finalDate: Date;
+	discounts: number;
+	companyReceipt: CompanyReceipt;
+	autonomousReceipt: AutonomousReceipt;
+	id: number;
+	value: number;
+}
+
+export interface CompanyReceiptCalc {
+	id: number;
+	corporateName: string;
+	cnpj: number;
+	userId: number;
+	receipts: any[];
+}
+
+export interface AutonomousReceiptCalc {
+	id: number;
+	name: string;
+	pis: number;
+	cpf: number | null;
+	rg: number | null;
+	organShipper: string;
+	city: string | null;
+	serviceType: string;
+	userId: number;
+	receipts: any[];
+}
